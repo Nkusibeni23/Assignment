@@ -13,8 +13,8 @@ const john = {
   mass: 92,
   height: 1.95,
   calcBMI: function () {
-    mark.bmi = mark.mass / mark.height ** 2;
-    return mark.bmi;
+    john.bmi = john.mass / john.height ** 2;
+    return john.bmi;
   },
 };
 
