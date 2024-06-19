@@ -1,3 +1,7 @@
+// The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed,
+//  without waiting for stylesheets, images,
+//   and subframes to finish loading.
+
 document.addEventListener("DOMContentLoaded", () => {
   const todoList = [];
   const todoListContainer = document.getElementById("todoList");
@@ -11,19 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     todoItem.innerHTML = `
-          <span>${todo.title}</span>
-          <span>${todo.description || ""}</span>
-          <span>${new Date(todo.dueDateTime).toLocaleString()}</span>
-          <button class="completeButton">${
-            todo.completed ? "Undo" : "Complete"
-          }</button>
-          <button class="deleteButton">Delete</button>
-      `;
+      <span>${todo.title}</span>
+      <span>${todo.description || ""}</span>
+      <span>${new Date(todo.dueDateTime).toLocaleString()}</span>
+      <button class="completeButton">${
+        todo.completed ? "Undo" : "Complete"
+      }</button>
+      <button class="updateButton">Update</button>
+      <button class="deleteButton">Delete</button>
+    `;
 
+    // Add event listener for the complete button
     todoItem.querySelector(".completeButton").addEventListener("click", () => {
       toggleComplete(todo.id);
     });
 
+    // Add event listener for the update button
+    todoItem.querySelector(".updateButton").addEventListener("click", () => {
+      updateTodoItem(todo.id);
+    });
+
+    // Add event listener for the delete button
     todoItem.querySelector(".deleteButton").addEventListener("click", () => {
       deleteTodoItem(todo.id);
     });
@@ -77,6 +89,54 @@ document.addEventListener("DOMContentLoaded", () => {
     if (todo) {
       todo.completed = !todo.completed;
       renderTodoList();
+    }
+  }
+
+  // Function to update a to-do item
+  function updateTodoItem(id) {
+    const todo = todoList.find((todo) => todo.id === id);
+    if (todo) {
+      // Populate input fields with current values
+      document.getElementById("title").value = todo.title;
+      document.getElementById("description").value = todo.description || "";
+      document.getElementById("dueDateTime").value = todo.dueDateTime.slice(
+        0,
+        -1
+      ); // Remove the 'Z' at the end for local datetime input
+
+      // Change Add button to Update button
+      const addButton = document.getElementById("addButton");
+      addButton.textContent = "Update";
+      addButton.removeEventListener("click", addTodoItem); // Remove old event listener
+      addButton.addEventListener("click", () => saveUpdatedTodoItem(todo.id)); // Add event listener for update
+    }
+  }
+
+  // Function to save updated to-do item
+  function saveUpdatedTodoItem(id) {
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const dueDateTime = document.getElementById("dueDateTime").value;
+
+    if (!title || !dueDateTime) {
+      alert("Title and due date/time are required.");
+      return;
+    }
+
+    const index = todoList.findIndex((todo) => todo.id === id);
+    if (index !== -1) {
+      todoList[index].title = title;
+      todoList[index].description = description;
+      todoList[index].dueDateTime = new Date(dueDateTime).toISOString();
+      renderTodoList();
+      clearInputFields();
+      document.getElementById("addButton").textContent = "Add To-Do"; // Reset button text
+      document
+        .getElementById("addButton")
+        .removeEventListener("click", saveUpdatedTodoItem); // Remove update event listener
+      document
+        .getElementById("addButton")
+        .addEventListener("click", addTodoItem); // Re-add add event listener
     }
   }
 
