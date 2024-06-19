@@ -96,19 +96,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateTodoItem(id) {
     const todo = todoList.find((todo) => todo.id === id);
     if (todo) {
-      // Populate input fields with current values
       document.getElementById("title").value = todo.title;
       document.getElementById("description").value = todo.description || "";
       document.getElementById("dueDateTime").value = todo.dueDateTime.slice(
         0,
         -1
-      ); // Remove the 'Z' at the end for local datetime input
+      );
 
       // Change Add button to Update button
       const addButton = document.getElementById("addButton");
       addButton.textContent = "Update";
-      addButton.removeEventListener("click", addTodoItem); // Remove old event listener
-      addButton.addEventListener("click", () => saveUpdatedTodoItem(todo.id)); // Add event listener for update
+      addButton.removeEventListener("click", addTodoItem);
+      addButton.addEventListener("click", () => saveUpdatedTodoItem(todo.id));
     }
   }
 
@@ -130,13 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
       todoList[index].dueDateTime = new Date(dueDateTime).toISOString();
       renderTodoList();
       clearInputFields();
-      document.getElementById("addButton").textContent = "Add To-Do"; // Reset button text
+      document.getElementById("addButton").textContent = "Add To-Do";
       document
         .getElementById("addButton")
-        .removeEventListener("click", saveUpdatedTodoItem); // Remove update event listener
+        .removeEventListener("click", saveUpdatedTodoItem);
       document
         .getElementById("addButton")
-        .addEventListener("click", addTodoItem); // Re-add add event listener
+        .addEventListener("click", addTodoItem);
     }
   }
 
