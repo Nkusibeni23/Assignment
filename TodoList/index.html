@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive To-Do List</title>
+    <style>
+      /* General page styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      /* Input container styling */
+      div {
+        margin-bottom: 20px;
+      }
+
+      input,
+      button {
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      /* Button styling */
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      /* To-do list container styling */
+      #todoList {
+        width: 80%;
+        max-width: 600px;
+        margin-top: 20px;
+      }
+
+      /* To-do item styling */
+      .todo-item {
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .todo-item span {
+        margin-right: 10px;
+      }
+
+      .completed {
+        text-decoration: line-through;
+        color: #aaa;
+      }
+
+      .todo-item button {
+        background-color: #f44336;
+      }
+
+      .todo-item button.completeButton {
+        background-color: #4caf50;
+      }
+
+      .todo-item button:hover {
+        background-color: #d32f2f;
+      }
+
+      .todo-item button.completeButton:hover {
+        background-color: #388e3c;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+    <div>
+      <input type="text" id="title" placeholder="Title" required />
+      <input type="text" id="description" placeholder="Description" required />
+      <input type="datetime-local" id="dueDateTime" required />
+      <button id="addButton">Add To-Do</button>
+    </div>
+    <div>
+      <button id="sortAscButton">Sort Ascending</button>
+      <button id="sortDescButton">Sort Descending</button>
+    </div>
+    <div id="todoList"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
