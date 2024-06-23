@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Clock</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      #clock {
+        font-size: 3em;
+        color: #333;
+      }
+      #format {
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 1em;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="clock"></div>
+    <div>
+      <label for="format">Time Format: </label>
+      <select id="format" onchange="updateFormat()">
+        <option value="24">24-Hour</option>
+        <option value="12">12-Hour</option>
+      </select>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
