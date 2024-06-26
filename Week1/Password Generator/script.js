@@ -9,7 +9,7 @@ function setStrength(val) {
 
   switch (val) {
     case 1:
-      text = "Very Weak";
+      text = "Too Weak";
       break;
     case 2:
       text = "Weak";

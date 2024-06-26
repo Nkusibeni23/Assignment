@@ -72,6 +72,7 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
 :root {
   --gray-200: hsl(252, 11%, 91%);
   --gray-400: hsl(251, 9%, 53%);
@@ -108,6 +109,7 @@ body {
   outline: 2px dashed white;
   outline-offset: 2px;
 }
+
 .button {
   --bg-color: transparent;
   --color: var(--gray-800);
@@ -127,6 +129,7 @@ body {
 .button svg {
   pointer-events: none;
 }
+
 .button[data-type="copy"] {
   position: relative;
   --color: var(--green);
@@ -156,6 +159,7 @@ body {
 .button[data-type="action"] {
   --bg-color: var(--green);
 }
+
 .button[data-type="action"]:hover {
   --border-color: var(--bg-color);
   --color: var(--bg-color);
@@ -167,12 +171,14 @@ body {
   isolation: isolate;
   line-height: 0;
 }
+
 .range input[type="range"] {
   cursor: pointer;
   width: 100%;
   -webkit-appearance: none;
   background-color: transparent;
 }
+
 .range input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   z-index: 2;
@@ -181,6 +187,7 @@ body {
   background-color: var(--gray-200);
   border-radius: 100vw;
 }
+
 .range_bar {
   z-index: -1;
   position: absolute;
@@ -204,12 +211,14 @@ body {
   gap: 1.25em;
   width: fit-content;
 }
+
 .checkbox input[type="checkbox"] {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
+
 .checkbox_box {
   width: 1.25rem;
   aspect-ratio: 1;
@@ -218,7 +227,7 @@ body {
 }
 
 .checkbox_box:hover {
-  --border-color: var(var(--green));
+  --border-color: var(--green);
 }
 
 input[type="checkbox"]:checked ~ .checkbox_box {
@@ -242,52 +251,34 @@ input[type="checkbox"]:focus-visible ~ .checkbox_box {
   outline: 2px dashed white;
   outline-offset: 2px;
 }
+
 .scale {
   display: flex;
   gap: 0.4375rem;
   height: 1.75rem;
 }
-.scale[data-value="1"]:nth-child(1) {
-  --color: var(var(var(--red)));
+
+.scale[data-value="1"] .scale_bar:nth-child(1) {
+  background-color: var(--strength-1);
 }
-.scale[data-value="2"]:nth-child(-n + 21) {
-  --color: var(var(var(--orange)));
+
+.scale[data-value="2"] .scale_bar:nth-child(-n + 2) {
+  background-color: var(--strength-2);
 }
-.scale[data-value="3"]:nth-child(-n + 3) {
-  --color: var(var(var(--yellow)));
+
+.scale[data-value="3"] .scale_bar:nth-child(-n + 3) {
+  background-color: var(--strength-3);
 }
-.scale[data-value="4"]:nth-child(-n + 4) {
-  --color: var(var(var(--green)));
+
+.scale[data-value="4"] .scale_bar:nth-child(-n + 4) {
+  background-color: var(--strength-4);
 }
 
 .scale_bar {
   width: 0.625rem;
+  height: 100%;
   border: 2px solid var(--gray-200);
-  background-color: transparent;
-}
-
-.scale_bar.active {
-  background-color: var(--gray-200);
-}
-
-.scale_bar.hidden {
-  display: none;
-}
-
-.scale[data-value="1"] .scale_bar {
-  background-color: var(--strength-1);
-}
-
-.scale[data-value="2"] .scale_bar {
-  background-color: var(--strength-2);
-}
-
-.scale[data-value="3"] .scale_bar {
-  background-color: var(--strength-3);
-}
-
-.scale[data-value="4"] .scale_bar {
-  background-color: var(--strength-4);
+  position: relative;
 }
 
 .container {
@@ -299,10 +290,12 @@ input[type="checkbox"]:focus-visible ~ .checkbox_box {
 .main-grid {
   --gap: clamp(1rem, 0.75rem + 2vw, 1.5rem);
 }
+
 .grid {
   display: grid;
   gap: var(--gap, --spacing-md);
 }
+
 .flex {
   display: flex;
   gap: var(--gap, 1rem);
@@ -312,42 +305,55 @@ input[type="checkbox"]:focus-visible ~ .checkbox_box {
   align-items: center;
   justify-content: space-between;
 }
+
 .bg-light {
   background-color: var(--gray-700);
 }
+
 .bg-dark {
   background-color: var(--gray-800);
 }
+
 .line-height-1 {
   line-height: 1;
 }
+
 .text-center {
   text-align: center;
 }
+
 .uppercase {
   text-transform: uppercase;
 }
+
 .color-light {
   color: var(--gray-400);
 }
+
 .color-green {
   color: var(--green);
 }
+
 .fs-md {
-  font-size: clamp(1rem, 0.5rem +2.5vw, 1.5rem);
+  font-size: clamp(1rem, 0.5rem + 2.5vw, 1.5rem);
 }
+
 .fs-lg {
   font-size: clamp(1.5rem, 1rem + 2vw, 2rem);
 }
+
 .padding-block-sm {
   padding-block: var(--spacing-md);
 }
+
 .padding-md {
   padding: var(--spacing-md);
 }
+
 .padding-left-md {
   padding-inline-start: var(--spacing-md);
 }
+
 .padding-inline-md {
   padding-inline: var(--spacing-md);
 }
