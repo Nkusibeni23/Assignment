@@ -1,6 +1,5 @@
 const lengthRange = document.getElementById("length-range");
 const lengthDisplay = document.querySelector(".length-display");
-const range = document.querySelector(".range");
 const strength = document.querySelector(".strength");
 const scale = document.querySelector(".scale");
 const scaleBars = document.querySelectorAll(".scale_bar");
@@ -63,13 +62,6 @@ function evalStrength() {
   return strength;
 }
 
-const checkboxes = document.querySelectorAll(
-  ".checkbox input[type='checkbox']"
-);
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener("change", () => setStrength(evalStrength()));
-});
-
 lengthRange.addEventListener("input", (e) => {
   const value = parseInt(e.target.value);
   const min = parseInt(e.target.min);
@@ -112,6 +104,14 @@ function generatePassword() {
   const useNumbers = document.getElementById("numbers").checked;
   const useSymbols = document.getElementById("symbols").checked;
 
+  if (!(useLowercase || useNumbers || useUppercase || useSymbols)) {
+    alert("Please select at least one option.");
+    return {
+      password: "",
+      strength: 1, // Very Weak
+    };
+  }
+
   useUppercase && (chars = [...chars, ...uppercase]);
   useLowercase && (chars = [...chars, ...lowercase]);
   useNumbers && (chars = [...chars, ...numbers]);
@@ -122,12 +122,23 @@ function generatePassword() {
       password += chars[Math.floor(Math.random() * chars.length)];
     }
   }
-  return password;
+
+  const passwordStrength = evalStrength();
+
+  return {
+    password,
+    strength: passwordStrength,
+  };
 }
 
 function setPassword() {
-  output.textContent = generatePassword();
-  copyBtn.classList.remove("active");
+  const { password, strength: passwordStrength } = generatePassword();
+
+  if (password !== "") {
+    output.textContent = password;
+    copyBtn.classList.remove("active");
+    setStrength(passwordStrength);
+  }
 }
 
 generateBtn.addEventListener("click", setPassword);
