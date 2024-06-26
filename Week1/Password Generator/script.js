@@ -71,8 +71,6 @@ lengthRange.addEventListener("input", (e) => {
 
   const width = ((value - min) / (max - min)) * 100 + "%";
   document.documentElement.style.setProperty("--width", width);
-
-  setStrength(evalStrength());
 });
 
 const copyBtn = document.querySelector(".copy-btn");
@@ -144,10 +142,8 @@ function setPassword() {
 generateBtn.addEventListener("click", setPassword);
 
 // Initialize app
-
 function init() {
   lengthDisplay.textContent = lengthRange.value;
-  setStrength(evalStrength());
   setPassword();
 }
 init();
