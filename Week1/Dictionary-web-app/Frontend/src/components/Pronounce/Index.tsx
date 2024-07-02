@@ -1,10 +1,18 @@
 import PlayButton from "./PlayButton";
 import "./Pronounce.css";
-let audio = null;
-const Index = ({ phonetics, word, phonetic }) => {
+let audio: any = null;
+const Index = ({
+  phonetics,
+  word,
+  phonetic,
+}: {
+  phonetics: any;
+  word: any;
+  phonetic: any;
+}) => {
   const pronounce = () => {
     let foundPhonetic = null;
-    foundPhonetic = phonetics.find((phonetic) =>
+    foundPhonetic = phonetics.find((phonetic: any) =>
       phonetic.audio && phonetic.text ? phonetic : null
     );
 

@@ -1,5 +1,5 @@
 import "./PartOfSpeech.css";
-const Index = ({ item }) => {
+const Index = ({ item }: { item: any }) => {
   return (
     <article className="part-of-speech">
       <div className="part-of-speech__content">
@@ -9,7 +9,7 @@ const Index = ({ item }) => {
         <div className="part-of-speech__meanings">
           <h5 className="part-of-speech__meanings__title">Meaning</h5>
           <ul className="part-of-speech__meaning-list">
-            {item.content.definitions.map((def, index) => {
+            {item.content.definitions.map((def: any, index: any) => {
               return (
                 <li key={index}>
                   {def.definition}

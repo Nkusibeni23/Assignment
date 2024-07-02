@@ -1,27 +1,17 @@
 import PartOfSpeech from "../PartOfSpeech/Index";
 
-const Index = ({ meanings }) => {
+const Index = ({ meanings }: { meanings: any }) => {
   console.log(meanings);
 
-  const items = [];
-  const jsxContent = Object.keys(meanings).forEach((partOfSpeech) => {
-    const item = meanings[partOfSpeech];
-    const singleItem = {
-      title: partOfSpeech,
-      content: item,
-    };
-    items.push(singleItem);
-  });
+  const items = Object.keys(meanings).map((partOfSpeech) => ({
+    title: partOfSpeech,
+    content: meanings[partOfSpeech],
+  }));
 
   return (
     <div className="parts-of-speech">
-      {items && items.length > 0 && (
-        <>
-          {items.map((item, index) => {
-            return <PartOfSpeech key={index} item={item} />;
-          })}
-        </>
-      )}
+      {items.length > 0 &&
+        items.map((item, index) => <PartOfSpeech key={index} item={item} />)}
     </div>
   );
 };
