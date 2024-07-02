@@ -1,17 +1,25 @@
+import { useState } from "react";
 import TopBar from "./components/TopBar/Index";
 import SearchBox from "./components/SearchBox/Index";
 import Main from "./components/Main/Index";
 
 import "./App.css";
-import { useState } from "react";
+
+// Define ContentType interface
+interface ContentType {
+  phonetics: string[];
+  word: string;
+  phonetic: string;
+  meanings: any[]; // Adjust 'any[]' to match your actual data structure
+}
 
 function App() {
   const [idle, setIdle] = useState(true);
   const [searching, setSearching] = useState(false);
   const [notFound, setNotFound] = useState(false);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState<ContentType | null>(null); // Use ContentType here
 
-  const searchHandler = async (searchedWord: any) => {
+  const searchHandler = async (searchedWord: string) => {
     setSearching(true);
     setIdle(false);
 
@@ -26,17 +34,15 @@ function App() {
       setNotFound(true);
     } else {
       setNotFound(false);
-
-      // compose content here
-      setContent(jsonResponse[0]);
+      setContent(jsonResponse[0] as ContentType); // Cast jsonResponse to ContentType
     }
   };
 
   const reset = () => {
-    setIdle(false);
+    setIdle(true);
     setSearching(false);
     setNotFound(false);
-    setContent("");
+    setContent(null);
   };
 
   return (
