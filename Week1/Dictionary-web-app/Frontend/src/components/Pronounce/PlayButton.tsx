@@ -1,6 +1,5 @@
-import React from "react";
 import "./PlayButton.css";
-const PlayButton = ({ onClick }) => {
+const PlayButton = ({ onClick }: { onClick: any }) => {
   return (
     <button className="play-button" onClick={onClick}>
       <span></span>

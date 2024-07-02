@@ -1,5 +1,3 @@
-import React from "react";
-
 import sad from "../../assets/images/sad.svg";
 
 import "./NotFound.css";
